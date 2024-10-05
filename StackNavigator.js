@@ -7,6 +7,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "./screens/LoginScreen";
+import LikedSongsScreen from "./screens/LikedSongsScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -77,6 +78,11 @@ function Navigation() {
           component={BottomTabs}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Liked"
+          component={LikedSongsScreen}
+          options={{ headerShown: false }}
+        ></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

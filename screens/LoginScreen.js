@@ -27,8 +27,8 @@ const LoginScreen = () => {
   const [request, response, promptAsync] = useAuthRequest(
     {
       responseType: ResponseType.Token,
-      clientId: "de25c05d6cfc4a15863b3fdff37b92dc",
-      clientSecret: "84f5d6c9550c4a2d8be744346a9c1a2c",
+      clientId: "hidden",
+      clientSecret: "hidden",
       scopes: [
         "user-read-email",
         "user-library-read",
@@ -44,6 +44,14 @@ const LoginScreen = () => {
     discovery
   );
 
+  const storeData = async (access_token) => {
+    try {
+      await AsyncStorage.setItem("token", access_token);
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
   useEffect(() => {
     if (response?.type === "success") {
       const { access_token } = response.params;
@@ -53,14 +61,6 @@ const LoginScreen = () => {
       storeData(access_token);
     }
   }, [response]);
-
-  const storeData = async () => {
-    try {
-      await AsyncStorage.setItem("token", access_token);
-    } catch (e) {
-      console.log("error", e);
-    }
-  };
 
   return (
     <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
